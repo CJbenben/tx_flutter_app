@@ -8,7 +8,7 @@ import 'webview.dart';
 const List<DemoTabViewModel> demos = [
   DemoTabViewModel(
     title: 'webview',
-    widget: WebViewPage(),
+    widget: WebViewPage(url: 'https://www.jianshu.com',),
   ),
 ];
 

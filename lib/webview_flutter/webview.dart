@@ -1,19 +1,28 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatefulWidget {
-//  String url;
-//  final String title;
+  final String url;
+  final String title;
 //  WebViewController _webViewController; // 添加一个controller
-//
-//  WebViewPage({this.url, this.title});
 
-  const WebViewPage({Key key}) : super(key: key);
+  const WebViewPage({
+    Key key,
+    this.title,
+    this.url,
+  }) : super(key: key);
+
+//  const WebViewPage({Key key}) : super(key: key);
   @override
   _WebViewState createState() => _WebViewState();
 }
 
 class _WebViewState extends State<WebViewPage> {
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +41,29 @@ class _WebViewState extends State<WebViewPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Text('data');
+    return WebView(
+      initialUrl: widget.url,
+      javascriptMode: JavascriptMode.unrestricted,
+      onWebViewCreated: (WebViewController webViewController) {
+        _controller.complete(webViewController);
+      },
+      javascriptChannels: <JavascriptChannel>[
+
+      ].toSet(),
+      navigationDelegate: (NavigationRequest request) {
+        if (request.url.startsWith('https://www.youtube.com/')) {
+          print('blocking navigation to $request}');
+          return NavigationDecision.prevent;
+        }
+        print('allowing navigation to $request');
+        return NavigationDecision.navigate;
+      },
+      onPageStarted: (String url) {
+        print('Page started loading: $url');
+      },
+      onPageFinished: (String url) {
+        print('Page finished loading: $url');
+      },
+    );
   }
 }
