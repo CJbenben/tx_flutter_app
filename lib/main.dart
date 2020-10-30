@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:txflutterapp/tabbar/ContanctsScreen.dart';
-import 'package:txflutterapp/tabbar/MusicScreen.dart';
+import 'package:txflutterapp/tabbar/manager/ManagerScreen.dart';
 import 'package:txflutterapp/tabbar/My.dart';
 import 'package:txflutterapp/tabbar/TXHome.dart';
 
@@ -35,7 +35,7 @@ class _FirstScreenState extends State<FirstScreen> {
   final List<Widget> _children = [
     TXHome(),
     ContanctsScreen(),
-    MusicScreen(),
+    ManagerScreen(),
     My(),
   ];
   int _currentIndex = 0;
