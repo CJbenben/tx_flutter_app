@@ -1,41 +1,27 @@
 import 'dart:convert';
 
 class Article {
-
-  final String articleTitle;
+  final String market_name;
+  final String name;
+  final String url;
+  final String downCount;// 下载次数
   final String desc1;
   final String desc2;
   final String desc3;
-  final String articlePic;
-  final String content;
+  final String bottom;
 
-  //构造函数
-  Article({
-    this.articleTitle,
-    this.desc1,
-    this.desc2,
-    this.desc3,
-    this.articlePic,
-    this.content,
-  });
+  Article({this.market_name, this.name, this.url, this.downCount, this.desc1, this.desc2, this.desc3, this.bottom});
 
-  //string -> List<Article>
-  static List<Article> resolveDataFromJsonString(String json) {
-    List<Article> listModel = new List<Article>();
-    List list = jsonDecode(json)['list'];
-    list.forEach((element) {
-      var model = new Article(
-        articlePic: element['articlePic'],
-        articleTitle: element['articleTitle'],
-        desc1: element['desc1'],
-        desc2: element['desc2'],
-        desc3: element['desc3'],
-        content: element['content'],
-      );
-      listModel.add(model);
-     });
-
-    return listModel;
+  factory Article.fromJson(Map<String, dynamic> json){
+    return Article(
+        market_name: json['market_name'],
+        name: json['name'],
+        url: json['logo_url'],
+        downCount: json['download_times_fixed'],
+        desc1: json['type'],
+        desc2: json['tag'],
+        desc3: json['market_id'],
+        bottom: json['single_word']);
   }
 
 }

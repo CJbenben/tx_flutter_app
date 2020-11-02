@@ -116,7 +116,7 @@ class _HttpActionState extends State<RequestListViewAction> {
   loadData() async {
     var result;
     String requestUrl =
-        'http://v.juhe.cn/toutiao/index?key=ad2908cae6020addf38ffdb5e2255c06';
+        'http://m.app.haosou.com/index/getData?type=1&page=1';
     http.Response response = await http.get(requestUrl);
     if (response.statusCode == HttpStatus.ok) {
       var json = response.body;

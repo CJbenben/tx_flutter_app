@@ -27,14 +27,14 @@ class ArticleItem extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                            image: NetworkImage(model.articlePic),
+                            image: NetworkImage(model.url),
                             fit: BoxFit.cover
                         )
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(left: 20)),
                   Text(
-                    model.articleTitle,
+                    model.downCount,
                     style: TextStyle(fontSize: 17, color: Colors.grey),
                   ),
                   Padding(padding: EdgeInsets.only(left: 10)),
@@ -43,7 +43,7 @@ class ArticleItem extends StatelessWidget {
                     children: <Widget>[
                       Text('|'+model.desc1, style: TextStyle(fontSize: 14),),
                       Text('|'+model.desc2, style: TextStyle(fontSize: 14),),
-                      Text('|'+model.desc3, style: TextStyle(fontSize: 14),),
+                      Text('|'+model.market_name, style: TextStyle(fontSize: 14),),
                     ],
                   )
                 ],
@@ -55,7 +55,7 @@ class ArticleItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    model.content,
+                    model.bottom,
                     style: TextStyle(fontSize: 15, color: Colors.grey),
                   ),
                   Icon(Icons.arrow_forward_ios, size: 20, color: Colors.grey),
